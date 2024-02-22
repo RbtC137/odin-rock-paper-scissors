@@ -1,0 +1,24 @@
+#rock-button {
+    background-image: url(./img/rps.png);
+    background-position: 190px -40px;
+    background-size: 250%;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+#paper-button {
+    background-image: url(./img/rps.png);
+    background-position: -50px -150px;
+    background-size: 200%;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
+#scissors-button {
+    background-image: url(./img/rps.png);
+    background-position: 5px 20px;
+    background-size: 200%;
+    height: 200px;
+    width: 200px;
+    border-radius: 100px;
+}
