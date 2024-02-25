@@ -1,3 +1,17 @@
+.container {
+    display: flex;
+    width: 80vw;
+    height: 70vh;
+    margin: 15vh auto;
+    flex-direction: column;
+    align-items: center;
+    border: dotted  20px black;
+    background-color: yellowgreen;
+}
+
+.player-move {
+    margin: 50px;
+}
 #rock-button {
     background-image: url(./img/rps.png);
     background-position: 190px -40px;
@@ -21,4 +35,16 @@
     height: 200px;
     width: 200px;
     border-radius: 100px;
+}
+
+.score-board {
+    width: 80vw;
+    display: flex;
+    justify-content: center;
+}
+
+.round-info {
+    width: 20vw;
+    font-weight: bold;
+    font-size: 20px;
 }

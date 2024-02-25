@@ -1,6 +1,6 @@
-const scoreBoard = document.querySelector('.score-board');
+const roundInfo = document.querySelector('.round-info');
 let roundCount = 1;
-const playerSelectionsPads = document.querySelectorAll(".player-selection");
+const playerSelectionsPads = document.querySelectorAll(".player-move");
 playerSelectionsPads.forEach((element) => {
     element.addEventListener('click', () => {
         const playerSelection = event.target.id.split('-')[0];
@@ -34,23 +34,16 @@ function playRound(playerSelection, computerSelection){
     para.classList.add("scoreMsg");
     if(playerSelection === computerSelection){
         //draw
-        para.textContent = `Round ${roundCount} - DRAW   Both: ${playerSelection}`;
+        para.textContent = `Round ${roundCount} - DRAW          Both: ${playerSelection}`;
     }else if (playerSelection === 'rock' && computerSelection === 'scissors' || 
     playerSelection === 'paper' && computerSelection === 'rock' || 
     playerSelection === 'scissors' && computerSelection === 'paper' ) {
         //playerWin
-        para.textContent = `Round ${roundCount} - Player WIN   Player: ${playerSelection} Bot: ${computerSelection}`;
+        para.textContent = `Round ${roundCount} - Player WIN        Player: ${playerSelection} Bot: ${computerSelection}`;
     }else {
         //playerLose
-        para.textContent = `Round ${roundCount} - Player LOSE   Player: ${playerSelection} Bot: ${computerSelection}`;
+        para.textContent = `Round ${roundCount} - Player LOSE       Player: ${playerSelection} Bot: ${computerSelection}`;
     }
-    scoreBoard.appendChild(para);
+    roundInfo.appendChild(para);
     roundCount++;
 }
-
-// function playGame(playerSelection) {
-//     const computerSelection = getComputerChoice();
-//     console.log(playerSelection,computerSelection);
-//     // console.log(playRound(playerSelection, computerSelection),`player:${scoreBoard[0]}, computer:${scoreBoard[1]}, Tie: ${scoreBoard[2]}`)
-
-// }
