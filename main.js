@@ -1,4 +1,14 @@
-const scoreBoard = [0, 0, 0]
+const scoreBoard = document.querySelector('.score-board');
+let roundCount = 1;
+const playerSelectionsPads = document.querySelectorAll(".player-selection");
+playerSelectionsPads.forEach((element) => {
+    element.addEventListener('click', () => {
+        const playerSelection = event.target.id.split('-')[0];
+        const computerSelection = getComputerChoice();
+        playRound(playerSelection,computerSelection);
+    })
+});
+
 
 function getComputerChoice() {
     const rand = Math.random();
@@ -12,35 +22,35 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection){
-    let res = '';
-    if(playerSelection.toLowerCase() === 'rock'){
-        res = computerSelection==='rock'?'Tie, both Rock'
-        :computerSelection==='paper'? 'You Lose! Paper beats Rock': 'You Win! Rock beats Scissors';
-    }else if(playerSelection.toLowerCase() === 'paper'){
-        res = computerSelection==='paper'?'Tie, both Paper'
-        :computerSelection==='scissors'? 'You Lose! Scissors beats Paper': 'You Win! Paper beats Rock';
-    }else if(playerSelection.toLowerCase() === 'scissors'){
-        res = computerSelection==='scissors'?'Tie, both Scissors'
-        :computerSelection==='rock'? 'You Lose! Rock beats Scissors': 'You Win! Scissors beats Paper';
-    }else {
-        res = 'Invalid input!!!'
+    if(roundCount > 5){
+        //clear out the round info
+        const scoreMsg = document.querySelectorAll(".scoreMsg");
+        scoreMsg.forEach((node) => {
+            node.parentElement.removeChild(node);
+        });
+        roundCount = 1;
     }
-    if(res.search('Win')!==-1){
-        scoreBoard[0] += 1;
-    }else if(res.search('Lose')!==-1){
-        scoreBoard[1] += 1;
+    const para = document.createElement('p');
+    para.classList.add("scoreMsg");
+    if(playerSelection === computerSelection){
+        //draw
+        para.textContent = `Round ${roundCount} - DRAW   Both: ${playerSelection}`;
+    }else if (playerSelection === 'rock' && computerSelection === 'scissors' || 
+    playerSelection === 'paper' && computerSelection === 'rock' || 
+    playerSelection === 'scissors' && computerSelection === 'paper' ) {
+        //playerWin
+        para.textContent = `Round ${roundCount} - Player WIN   Player: ${playerSelection} Bot: ${computerSelection}`;
     }else {
-        scoreBoard[2] += 1;
+        //playerLose
+        para.textContent = `Round ${roundCount} - Player LOSE   Player: ${playerSelection} Bot: ${computerSelection}`;
     }
-    return res
+    scoreBoard.appendChild(para);
+    roundCount++;
 }
 
-function playGame() {
-    let playerSelection = prompt('Show your move!');
-    const computerSelection = getComputerChoice();
-    console.log(playRound(playerSelection, computerSelection),`player:${scoreBoard[0]}, computer:${scoreBoard[1]}, Tie: ${scoreBoard[2]}`)
-}
+// function playGame(playerSelection) {
+//     const computerSelection = getComputerChoice();
+//     console.log(playerSelection,computerSelection);
+//     // console.log(playRound(playerSelection, computerSelection),`player:${scoreBoard[0]}, computer:${scoreBoard[1]}, Tie: ${scoreBoard[2]}`)
 
-while(1){
-    playGame();
-}
+// }
